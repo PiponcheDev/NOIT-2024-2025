@@ -67,34 +67,27 @@ nav > ul{
     width: 120%;
 }
 
-#main-section{
+section{
+    height: 90vh;
+    margin: auto;
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-around;
-}
-
-#first-section{
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 3rem;
 }
 
-#first-section > img{
+section > img{
     width: 24vw;
     height: auto;
     border-radius: 1rem;
     filter: grayscale(40%);
 }
 
-#first-section > h2{
+#main-section > h2{
     text-align: center;
 }
 
-#second-section{
+#main-section{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -106,18 +99,13 @@ nav > ul{
     border-radius: 3rem;
 }
 
-#second-section > h2{
-    text-align: justify;
+#main-section > h1{
+    text-align: center;
     width: 30vw;
 }
 
-.last-line{
-    display: block;
-    width: 100%;
-    text-align: center;
-}
 
-#second-section > a{
+#main-section > a{
     font-size: 2em;
     padding: 1em;
     background: rgba(var(--secondary-color-rgb), 0.12);
@@ -125,7 +113,8 @@ nav > ul{
     position: relative;
     text-decoration: none;
 }
-#second-section > a::after{
+
+#main-section > a::after{
     content: '';
     border-bottom: 2px solid #e8f1f2;
     width: 0;
@@ -136,6 +125,6 @@ nav > ul{
     transition: 0.3s ease-in-out;
 }
 
-#second-section > a:hover::after{
+#main-section > a:hover::after{
     width: 80%;
 }
