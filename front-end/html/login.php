@@ -22,12 +22,12 @@
             <i class="fa-solid fa-bus" id="logo"></i>
             <h1 id="name">BgBus</h1>
         </div>    
-        <form action="#" method="post">
-            <input type="text" id="email" class="input" placeholder="Въведете си имейла или потребителското име">
-            <input type="password" id="pass" class="input" placeholder="Въведете си паролата">
-            <input type="submit" id="submit" value="Влез">
+        <form action="login-process.php" method="post">
+            <input type="text" id="email" class="input" name="user"placeholder="Въведете си имейла">
+            <input type="password" id="pass" class="input" name= "password" placeholder="Въведете си паролата">
+            <input type="submit" id="submit" name="login"value="Влез">
         </form>
-        <h3>Нямаш акаунт?<br><br> <a href="register.html">Регистрирай се</a></h3>
+        <h3>Нямаш акаунт?<br><br> <a href="register.php">Регистрирай се</a></h3>
     </section>
 </body>
 </html>

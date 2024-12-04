@@ -1,3 +1,10 @@
+<?php session_start();
+if(empty($_SESSION['id'])):
+  header('Location:login.php');
+endif;
+
+?>
+
 <!DOCTYPE html>
 <html lang="bg">
   <head>
@@ -32,8 +39,8 @@
         <h1 id="name">BgBus</h1>
       </div>
       <ul>
-        <a href="login.php" class="nav-button">Login</a>
-        <a href="register.php" class="nav-button">Register</a>
+        <a href="#" class="nav-button">My tickets</a>
+        <a href="logout.php"><div style="float:right"><button>logout</button></div></a>
       </ul>
     </nav>
     <section>
