@@ -5,6 +5,7 @@
     $username = $_POST["username"];
     $email = filter_var($_POST["email"], FILTER_VALIDATE_EMAIL);
     $pass = $_POST["pass"];
+    $hash = password_hash($pass, PASSWORD_BCRYPT);
     $passcon = $_POST["confirmpass"];
   
     $dup = mysqli_query($conn , "SELECT * FROM user WHERE email = '$email' OR username = '$username'");
@@ -18,18 +19,19 @@
       </script>";
     }else{
       if($pass == $passcon){
-        $query = "INSERT INTO user (email , username , password) VALUES('$email' , '$username' , '$pass')";
-        mysqli_query($conn , $query);
+          
+          $query = "INSERT INTO user (email , username , password) VALUES('$email' , '$username' , '$hash')";
+          mysqli_query($conn , $query);
 
-        $querry = mysqli_query($conn, "SELECT * FROM user WHERE email = '$username' AND password = '$pass'")or die(mysqli_error($conn));
-        $row = mysqli_fetch_array($querry);
+          $querry = mysqli_query($conn, "SELECT * FROM user WHERE email = '$username' AND password = '$hash'")or die(mysqli_error($conn));
+          $row = mysqli_fetch_array($querry);
 
-        $name = $row['username'];
-        $id = $row['id'];
+          $name = $row['username'];
+          $id = $row['id'];
 
-        $_SESSION['id'] = $id;
-        $_SESSION['username'] = $name;
-        header('Location:home-login.php');
+          $_SESSION['id'] = $id;
+          $_SESSION['username'] = $name;
+          header('Location:home-login.php');
       }else{
         echo "<script> alert('Password incorect');</script>";
       }
