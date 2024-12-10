@@ -16,8 +16,6 @@ endif;
     <link rel="icon" href="../media/bus-solid.svg" />
     <!--css files-->
     <link rel="stylesheet" href="../css/index.css" />
-    <!--js files-->
-    <script src="../js/index.js"></script>
     <!--fontawesome icons imbed-->
     <script
       src="https://kit.fontawesome.com/b56d58b9c9.js"
@@ -40,7 +38,7 @@ endif;
       </div>
       <ul>
         <a href="#" class="nav-button">My tickets</a>
-        <a href="logout.php"><div style="float:right"><button>logout</button></div></a>
+        <a href="logout.php"><div style="float:right"><button class="nav-button">Logout</button></div></a>
       </ul>
     </nav>
     <section>
@@ -53,7 +51,7 @@ endif;
             намалявайки емисиите и задръстванията. Удобно, икономично и зелено –
             автобусите са най-добрият избор за чисто бъдеще!
           </p>
-          <a href="#">Закупете карта</a>
+          <a href="subscription.html">Закупете карта</a>
         </div>
       </div>
     </section>

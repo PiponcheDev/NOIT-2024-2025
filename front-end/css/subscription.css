@@ -1,0 +1,140 @@
+:root {
+  --primary-color: #0d1b1e;
+  --secondary-color: #e78207;
+  --text-color: #f1f0cc;
+}
+* {
+  color: var(--text-color);
+  font-family: Nunito;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background: var(--primary-color);
+  font-family: Nunito;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--secondary-color);
+  height: 10vh;
+}
+nav > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 10vw;
+  height: 9vh;
+  margin-left: 2.5rem;
+}
+#logo {
+  font-size: 3rem;
+}
+#name {
+  font-size: 1.8em;
+}
+nav > ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 40vw; /* Adjusted width */
+  height: 9vh;
+  margin-right: 2.5rem;
+  font-size: 1.5em;
+  list-style: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding */
+}
+
+.nav-button {
+  text-decoration: none;
+  position: relative;
+  transition: 0.3s ease-in-out;
+  font-weight: 600;
+  background: none;
+  padding: 0.5rem 1rem; /* Add padding for better spacing */
+  color: var(--text-color); /* Ensure text color is visible */
+}
+
+.nav-button::after {
+  content: "";
+  border-bottom: 2px solid #e8f1f2;
+  width: 0;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  transition: 0.3s ease-in-out;
+}
+
+.nav-button:hover::after {
+  width: 120%;
+}
+
+.tab{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 4rem;
+}
+
+.tablinks{
+  all: unset;
+  background: #111111;
+  padding: 2rem;
+  width: 10rem;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.container{
+  position: relative
+}
+
+.circle{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle::before{
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 2.5px;
+  transform: translate(0%, -50%);
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-color: #e8f1f2;
+}
+
+.circle::after{
+  content: '';
+  position: absolute;
+  display: none;
+  top: 50%;
+  right: 7.5px;
+  transform: translate(0%, -50%);
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  background-color: var(--secondary-color);
+}
+
+.circle.active::after{
+  display: block;
+}
+
+.tabcontent{
+  display: none;
+}

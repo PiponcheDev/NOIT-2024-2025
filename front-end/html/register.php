@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
   require 'config.php';
   
   if(isset($_POST["register"])){
@@ -9,13 +9,21 @@
   
     $dup = mysqli_query($conn , "SELECT * FROM user WHERE email = '$email' OR username = '$username'");
   
+    $query = mysqli_query($conn, "SELECT * FROM user WHERE email = '$username' AND password = '$pass'")or die(mysqli_error($conn));
+    $row = mysqli_fetch_array($query);
+
+    $name = $row['username'];
+    $id = $row['id'];
+
     if(mysqli_num_rows($dup) > 0){
       echo "<script> alert('Username or email has already been taken');</script>";
     }else{
       if($pass == $passcon){
         $query = "INSERT INTO user (email , username , password) VALUES('$email' , '$username' , '$pass')";
         mysqli_query($conn , $query);
-        echo "<script> alert('Registration succses');</script>";
+        $_SESSION['id'] = $id;
+        $_SESSION['username'] = $name;
+        header('Location:home-login.php');
       }else{
         echo "<script> alert('Password incorect');</script>";
       }

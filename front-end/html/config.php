@@ -4,3 +4,4 @@
   if(!$conn){
     echo "Error in databse connection";
   }
+?>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+  <link rel="stylesheet" href="../css/subscription.css">
+  <script src="../js/subscription.js" defer></script>
+  <!--google fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com/" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet"
+  />
+
+  <script
+    src="https://kit.fontawesome.com/b56d58b9c9.js"
+    crossorigin="anonymous"
+    defer
+  ></script>
+</head>
+<body>
+  <nav>
+    <div>
+      <i class="fa-solid fa-bus" id="logo"></i>
+      <h1 id="name">BgBus</h1>
+    </div>
+    <ul>
+      <a href="home-login.php" class="nav-button">Home</a>
+      <a href="#" class="nav-button">My cards</a>
+      <a href="logout.php" class="nav-button">Logout</a>
+    </ul>
+  </nav>
+  <div class="tab">
+    <div class="container">
+      <button class="tablinks" onclick="openCity(this, '1')">1</button>
+      <div class="circle"></div>
+    </div>
+    <div class="container">
+      <button class="tablinks" onclick="openCity(this, '3')">3</button>
+      <div class="circle"></div>
+    </div>
+    <div class="container">
+      <button class="tablinks" onclick="openCity(this, '6')">6</button>
+      <div class="circle"></div>
+    </div>
+    <div class="container">
+      <button class="tablinks" onclick="openCity(this, '12')">12</button>
+      <div class="circle"></div>
+    </div>
+  </div>
+    
+  <div class="showplace">
+    <div id="1" class="tabcontent">1</div>
+    <div id="3" class="tabcontent">3</div>
+    <div id="6" class="tabcontent">6</div>
+    <div id="12" class="tabcontent">12</div>
+  </div>
+</body>
+</html>

@@ -1,7 +1,6 @@
 :root {
   --primary-color: #0d1b1e;
   --secondary-color: #e78207;
-  --secondary-color-rgb: 11, 29, 53;
   --text-color: #f1f0cc;
 }
 * {
@@ -42,17 +41,25 @@ nav > ul {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 20vw;
+  width: 25vw;
   height: 9vh;
   margin-right: 2.5rem;
   font-size: 1.5em;
 }
 
-.nav-button {
+.nav-button { 
   text-decoration: none;
   position: relative;
   transition: 0.3 ease-in-out;
   font-weight: 600;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
 }
 .nav-button::after {
   content: "";
@@ -136,25 +143,4 @@ section {
   box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
-}
-
-.logout {
-  text-decoration: none;
-  position: relative;
-  transition: 0.3 ease-in-out;
-  font-weight: 600;
-}
-.logout::after {
-  content: "";
-  border-bottom: 2px solid #e8f1f2;
-  width: 0;
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  transform: translateX(-50%);
-  transition: 0.3s ease-in-out;
-}
-
-.logout:hover::after {
-  width: 120%;
 }

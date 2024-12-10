@@ -1,0 +1,90 @@
+:root {
+    --primary-color: #0d1b1e;
+    --secondary-color: #e78207;
+    --text-color: #f1f0cc;
+}
+
+body {
+    background: var(--primary-color);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 99vh;
+    width: 99vw;
+    overflow: hidden;
+    font-family: Nunito;
+}
+
+div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6rem;
+}
+
+#wrapper {
+    position: relative;
+    height: 100%;
+}
+
+.profile-main-loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px; /* Adjusted size */
+    z-index: 9000;
+}
+
+.profile-main-loader .loader {
+    position: relative;
+    width: 100px; /* Adjusted size */
+    height: 100px; /* Adjusted size */
+}
+
+.circular-loader {
+    animation: rotate 2s linear infinite;
+    transform-origin: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: auto;
+}
+
+.loader-path {
+    stroke-dasharray: 150, 200;
+    stroke-dashoffset: -10;
+    animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+    stroke-linecap: round;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124;
+    }
+}
+
+@keyframes color {
+    0%, 40%, 66%, 80%, 90% {
+        stroke: var(--secondary-color);
+    }
+}
