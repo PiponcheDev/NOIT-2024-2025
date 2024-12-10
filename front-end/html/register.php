@@ -9,18 +9,24 @@
   
     $dup = mysqli_query($conn , "SELECT * FROM user WHERE email = '$email' OR username = '$username'");
   
-    $query = mysqli_query($conn, "SELECT * FROM user WHERE email = '$username' AND password = '$pass'")or die(mysqli_error($conn));
-    $row = mysqli_fetch_array($query);
-
-    $name = $row['username'];
-    $id = $row['id'];
 
     if(mysqli_num_rows($dup) > 0){
-      echo "<script> alert('Username or email has already been taken');</script>";
+      echo 
+      "<script> 
+        alert('Името или пощата са заети');
+        document.location('register.php');
+      </script>";
     }else{
       if($pass == $passcon){
         $query = "INSERT INTO user (email , username , password) VALUES('$email' , '$username' , '$pass')";
         mysqli_query($conn , $query);
+
+        $querry = mysqli_query($conn, "SELECT * FROM user WHERE email = '$username' AND password = '$pass'")or die(mysqli_error($conn));
+        $row = mysqli_fetch_array($querry);
+
+        $name = $row['username'];
+        $id = $row['id'];
+
         $_SESSION['id'] = $id;
         $_SESSION['username'] = $name;
         header('Location:home-login.php');
@@ -39,7 +45,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--tab view-->
-    <title>BgBus</title>
+    <title>БгБус</title>
     <link rel="icon" href="../media/bus-solid.svg" />
     <!--css file-->
     <link rel="stylesheet" href="../css/login-register.css" />
@@ -61,7 +67,7 @@
     <section>
       <div id="name-logo">
         <i class="fa-solid fa-bus" id="logo"></i>
-        <h1 id="name">BgBus</h1>
+        <h1 id="name">БгБус</h1>
       </div>
       <form action="register.php" method="post">
         <input
@@ -101,3 +107,5 @@
     </section>
   </body>
 </html>
+
+

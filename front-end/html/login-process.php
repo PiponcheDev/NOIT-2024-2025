@@ -28,8 +28,6 @@ if(isset($_POST["login"])){
       $_SESSION['id'] = $id;
       $_SESSION['username'] = $name;
 
-      echo "<script type='text/javascript'>
-        document.location = 'home-login.php';
-      </script>";
+      header('Location:home-login.php');
     }
 }

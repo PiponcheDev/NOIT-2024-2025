@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--tab view-->
-  <title>BgBus</title>
+  <title>БгБус</title>
   <link rel="icon" href="../media/bus-solid.svg">
   <!--css file-->
   <link rel="stylesheet" href="../css/login-register.css">
@@ -20,7 +20,7 @@
   <section>
     <div id="name-logo">
       <i class="fa-solid fa-bus" id="logo"></i>
-      <h1 id="name">BgBus</h1>
+      <h1 id="name">БгБус</h1>
     </div>    
     <form action="login-process.php" method="post">
       <input type="text" id="email" class="input" name="user"placeholder="Въведете си имейла">

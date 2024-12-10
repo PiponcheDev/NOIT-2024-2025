@@ -1,7 +1,5 @@
-<?php session_start();
-if(empty($_SESSION['id'])):
-  header('Location:login.php');
-endif;
+<?php 
+session_start();
 
 ?>
 
@@ -12,7 +10,7 @@ endif;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--tab view-->
-    <title>BgBus</title>
+    <title>БгБус</title>
     <link rel="icon" href="../media/bus-solid.svg" />
     <!--css files-->
     <link rel="stylesheet" href="../css/index.css" />
@@ -34,11 +32,11 @@ endif;
     <nav>
       <div>
         <i class="fa-solid fa-bus" id="logo"></i>
-        <h1 id="name">BgBus</h1>
+        <h1 id="name">Бгбус</h1>
       </div>
       <ul>
-        <a href="#" class="nav-button">My tickets</a>
-        <a href="logout.php"><div style="float:right"><button class="nav-button">Logout</button></div></a>
+        <a href="#" class="nav-button">Мой карти</a>
+        <a href="logout.php"><div style="float:right"><button class="nav-button">Изход от профил</button></div></a>
       </ul>
     </nav>
     <section>

@@ -47,7 +47,8 @@ nav > ul {
   font-size: 1.5em;
 }
 
-.nav-button { 
+.nav-button {
+  all: unset;
   text-decoration: none;
   position: relative;
   transition: 0.3 ease-in-out;
