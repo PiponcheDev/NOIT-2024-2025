@@ -8,10 +8,13 @@
     $hash = password_hash($pass, PASSWORD_BCRYPT);
     $passcon = $_POST["confirmpass"];
   
-    $dup = mysqli_query($conn , "SELECT * FROM user WHERE email = '$email' OR username = '$username'");
+    $dup = $pdo -> prepare("SELECT * FROM user WHERE email = ? OR username = ?");
+    $dup->execute([$email, $username]);
+    $dupRow = $dup -> fetchAll(PDO::FETCH_ASSOC);
+    $count = count ($dupRow);
   
 
-    if(mysqli_num_rows($dup) > 0){
+    if($count > 0){
       echo 
       "<script> 
         alert('Името или пощата са заети');
@@ -20,14 +23,17 @@
     }else{
       if($pass == $passcon){
           
-          $query = "INSERT INTO user (email , username , password) VALUES('$email' , '$username' , '$hash')";
-          mysqli_query($conn , $query);
+          $ins = $pdo -> prepare("INSERT INTO user (email , username , password) VALUES(? , ? , ?)");
+          $ins ->execute([$email, $username , $hash]);
+          
 
-          $querry = mysqli_query($conn, "SELECT * FROM user WHERE email = '$username' AND password = '$hash'")or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($querry);
+          $check = $pdo -> prepare("SELECT * FROM user WHERE email = ? AND password = ?");
+          $check->execute([$email, $hash]);
 
-          $name = $row['username'];
-          $id = $row['id'];
+          $row = $check -> fetchAll(PDO::FETCH_ASSOC);
+
+          $name = $row[2];
+          $id = $row[0];
 
           $_SESSION['id'] = $id;
           $_SESSION['username'] = $name;

@@ -4,20 +4,18 @@ require 'config.php';
 
 if(isset($_POST["login"])){
 
-  $email_unsafe = $_POST["user"];
-  $pass_unsafe = $_POST["password"];
+  $email = $_POST["user"];
+  $pass = $_POST["password"];
 
-  $email = mysqli_real_escape_string($conn , $email_unsafe);
-  $pass = mysqli_real_escape_string($conn , $pass_unsafe);
   $hash = password_hash($pass, PASSWORD_BCRYPT);
 
   
-   $query = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email' AND password = '$hash' ")or die(mysqli_error($conn));
-  
-    $row = mysqli_fetch_array($query);
+    $query= $pdo -> prepare("SELECT * FROM user WHERE email = ? AND password = ? ");
+    $query-> execute([$email , $pass]);
 
+    $row = $query->fetchAll(PDO::FETCH_ASSOC);
       $name = $row[1];
-      $counter = mysqli_num_rows($query);
+      $counter = count($row);
       $id = $row[0];
 
     
