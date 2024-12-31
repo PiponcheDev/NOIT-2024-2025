@@ -15,7 +15,7 @@ function getDatabaseConnection(): PDO {
         $env['DB_HOST'] ?? 'localhost',
         $env['DB_PORT'] ?? '3306',
         $env['DB_NAME'] ?? '',
-        $env['DB_CHARSET'] ?? 'utf8mb4',
+        $env['DB_CHARSET'] ?? '',
         $env['DB_PASS'] ?? '',
         $env['DB_USER'] ?? ''
     );

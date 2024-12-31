@@ -21,8 +21,7 @@
         document.location('register.php');
       </script>";
     }else{
-      if($pass == $passcon){
-          
+      if($pass == $passcon){          
           $ins = $pdo -> prepare("INSERT INTO user (email , username , password) VALUES(? , ? , ?)");
           $ins ->execute([$email, $username , $hash]);
           
@@ -34,6 +33,18 @@
 
           $name = $row[2];
           $id = $row[0];
+          
+          function token() {
+            $str = "1234567890qwertyuiopasdfghjkl;zxcvbnm,./?[{]}!£$%^&*()_-=+#";
+            $rnd = str_shuffle($str);
+            $token = md5($rnd);
+            return $token;
+          }
+
+          $token = token();
+
+          $card = $pdo -> prepare("INSERT INTO card (id , password , cardToken) VALUES(?, ? , ?)");
+          $card -> execute([$id , $hash, $token]);
 
           $_SESSION['id'] = $id;
           $_SESSION['username'] = $name;

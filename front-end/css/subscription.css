@@ -12,6 +12,7 @@
 body {
   background: var(--primary-color);
   font-family: Nunito;
+  overflow-y: hidden;
 }
 
 nav {
@@ -75,66 +76,26 @@ nav > ul {
   width: 120%;
 }
 
-.tab{
-  display:flex;
-  flex-direction: row;
+.card-space {
+  background-color: var(--primary-color);
+  height: 90vh;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 20px;
   justify-content: space-around;
-  margin-top: 4rem;
 }
 
-.tablinks{
-  all: unset;
-  background: #111111;
-  padding: 2rem;
-  width: 10rem;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 1.5rem;
-  position: relative;
+.card {
+  background-color: var(--text-color);
+  height: 20vh;
+  width: 50vw;
+  color: black;
+  border-radius: 20px;
   cursor: pointer;
 }
 
-.container{
-  position: relative
-}
-
-.circle{
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 30px;
-  height: 30px;
-}
-
-.circle::before{
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: 2.5px;
-  transform: translate(0%, -50%);
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  background-color: #e8f1f2;
-}
-
-.circle::after{
-  content: '';
-  position: absolute;
-  display: none;
-  top: 50%;
-  right: 7.5px;
-  transform: translate(0%, -50%);
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  background-color: var(--secondary-color);
-}
-
-.circle.active::after{
-  display: block;
-}
-
-.tabcontent{
-  display: none;
+.card-effect {
+  border: double 6px #e78207;
 }
