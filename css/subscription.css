@@ -1,0 +1,139 @@
+:root {
+  --primary-color: #0d1b1e;
+  --secondary-color: #e78207;
+  --text-color: #f1f0cc;
+}
+* {
+  color: var(--text-color);
+  font-family: Nunito;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background: var(--primary-color);
+  font-family: Nunito;
+  overflow: hidden;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--secondary-color);
+  height: 10vh;
+}
+nav > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 10vw;
+  height: 9vh;
+  margin-left: 2.5rem;
+}
+#logo {
+  font-size: 3rem;
+}
+#name {
+  font-size: 1.8em;
+}
+nav > ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 40vw; /* Adjusted width */
+  height: 9vh;
+  margin-right: 2.5rem;
+  font-size: 1.5em;
+  list-style: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding */
+}
+
+.nav-button {
+  text-decoration: none;
+  position: relative;
+  transition: 0.3s ease-in-out;
+  font-weight: 600;
+  background: none;
+  padding: 0.5rem 1rem; /* Add padding for better spacing */
+  color: var(--text-color); /* Ensure text color is visible */
+}
+
+.nav-button::after {
+  content: "";
+  border-bottom: 2px solid #e8f1f2;
+  width: 0;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  transition: 0.3s ease-in-out;
+}
+
+.nav-button:hover::after {
+  width: 120%;
+}
+
+.container {  
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-auto-flow: row;
+  width: 100vw;
+  height: 91vh;
+  grid-template-areas:
+    "cards info"
+    "cards info"
+    "cards info"
+    "cards info";
+}
+
+.cards {
+  grid-area: cards; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 10px;
+
+}
+
+.info { 
+  grid-area: info; 
+  background-color: #242829;
+  width: 48vw;
+  height: 84vh;
+  border-radius: 20px;
+  margin: 30px 5px 10px 10px;
+  color: beige;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.card {
+  background-color: var(--text-color);
+  height: 20vh;
+  width: 50vw;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.card p{
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+
+
+
+
