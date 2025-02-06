@@ -120,8 +120,8 @@ section {
   gap: 4rem;
 }
 
-.info a:visited,
-.info a:link {
+
+.info .buy {
   transition: ease-in-out 0.3s;
   font-weight: 600;
   font-size: 19px;
@@ -129,6 +129,7 @@ section {
   padding: 1.2em 1.4em;
   border-radius: 35px;
   margin-top: 20px;
+  border: 2px solid #090e0f;
   color: var(--secondary-color);
   background-color: var(--primary-color);
 }
@@ -138,8 +139,9 @@ section {
   font-size: 17px;
 }
 
-.info > a:hover {
+.info > .buy:hover {
   color: var(--text-color);
+  cursor: pointer;
   background-color: #142225;
   box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);

@@ -1,61 +1,63 @@
-<?php session_start();
-  require 'config.php';
-  
-  if(isset($_POST["register"])){
+<?php
+session_start();
+require 'config.php';
+
+if (isset($_POST["register"])) {
     $username = $_POST["username"];
     $email = filter_var($_POST["email"], FILTER_VALIDATE_EMAIL);
     $pass = $_POST["pass"];
     $hash = password_hash($pass, PASSWORD_BCRYPT);
     $passcon = $_POST["confirmpass"];
-  
-    $dup = $pdo -> prepare("SELECT * FROM user WHERE email = ? OR username = ?");
+
+    // Check for duplicate email or username
+    $dup = $pdo->prepare("SELECT * FROM user WHERE email = ? OR username = ?");
     $dup->execute([$email, $username]);
-    $dupRow = $dup -> fetchAll(PDO::FETCH_ASSOC);
-    $count = count ($dupRow);
-  
+    $dupRow = $dup->fetchAll(PDO::FETCH_ASSOC);
+    $count = count($dupRow);
 
-    if($count > 0){
-      echo 
-      "<script> 
-        alert('Името или пощата са заети');
-        document.location('register.php');
-      </script>";
-    }else{
-      if($pass == $passcon){          
-          $ins = $pdo -> prepare("INSERT INTO user (email , username , password) VALUES(? , ? , ?)");
-          $ins ->execute([$email, $username , $hash]);
-          
+    if ($count > 0) {
+        echo "<script>alert('Името или пощата са заети'); window.location.href = 'register.php';</script>";
+    } else {
+        if ($pass == $passcon) {
+            // Insert new user into the database
+            $ins = $pdo->prepare("INSERT INTO user (email, username, password) VALUES (?, ?, ?)");
+            $ins->execute([$email, $username, $hash]);
 
-          $check = $pdo -> prepare("SELECT * FROM user WHERE email = ? AND password = ?");
-          $check->execute([$email, $hash]);
+            // Retrieve the newly inserted user's ID
+            $check = $pdo->prepare("SELECT * FROM user WHERE email = ?");
+            $check->execute([$email]);
+            $row = $check->fetch(PDO::FETCH_ASSOC); // Use fetch() instead of fetchAll()
 
-          $row = $check -> fetchAll(PDO::FETCH_ASSOC);
+            $id = $row['id']; // Access the 'id' column correctly
+            $name = $row['username']; // Access the 'username' column correctly
 
-          $name = $row[2];
-          $id = $row[0];
-          
-          function token() {
-            $str = "1234567890qwertyuiopasdfghjkl;zxcvbnm,./?[{]}!£$%^&*()_-=+#";
-            $rnd = str_shuffle($str);
-            $token = md5($rnd);
-            return $token;
-          }
+            // Generate a token for the card
+            function token() {
+                $str = "1234567890qwertyuiopasdfghjkl;zxcvbnm,./?[{]}!£$%^&*()_-=+#";
+                $rnd = str_shuffle($str);
+                $token = md5($rnd);
+                return $token;
+            }
 
-          $token = token();
+            $token = token();
 
-          $card = $pdo -> prepare("INSERT INTO card (id , password , cardToken) VALUES(?, ? , ?)");
-          $card -> execute([$id , $hash, $token]);
+            // Insert the card into the database
+            $card = $pdo->prepare("INSERT INTO card (user_id, cardToken) VALUES (?, ?)");
+            $card->execute([$id, $token]);
 
-          $_SESSION['id'] = $id;
-          $_SESSION['username'] = $name;
-          header('Location:home-login.php');
-      }else{
-        echo "<script> alert('Password incorect');</script>";
-      }
+            // Set session variables
+            $_SESSION['user_id'] = $id;
+            $_SESSION['username'] = $name;
+
+            // Redirect to the home page
+            header('Location: home-login.php');
+            exit();
+        } else {
+            echo "<script>alert('Password incorrect');</script>";
+        }
     }
-  }
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="bg">
