@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/payment.css">
+    <title>Bg Buss</title>
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <div id="container">
+        <h1>Плащане</h1>
+        <div id="paypal-button-container"></div>
+    </div>
+    
+    <!-- PayPal JS SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=CLIENT_ID&currency=USD"></script>
+
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: { value: '0.01' }  // Update to a real amount, even if it's a test amount
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                console.log("Payment approved. Data:", data);
+                return actions.order.capture().then(function(details) {
+                    console.log("Order captured. Details:", details);
+                    // Send details to server for processing
+                    fetch('process_payment.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            orderID: data.orderID,
+                            payerID: data.payerID,
+                            paymentDetails: details
+                        })
+                    })
+                    .then(response => {
+                        console.log("Server response:", response);
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Parsed response data:", data);
+                        if (data.success) {
+                            alert('Payment completed successfully!');
+                            window.location.href = 'home-login.php'; // Redirect after success
+                        } else {
+                            alert('Payment verification failed.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error processing payment:", error);  // Catch JSON parsing errors
+                    });
+                }).catch(function(error) {
+                    console.error("PayPal order capture failed:", error);
+                    alert("Payment capture failed. Please try again.");
+                });
+            },
+            onCancel: function(data) {
+                alert('Payment was canceled.');
+            }
+        }).render('#paypal-button-container');
+    </script>
+</body>
+</html>

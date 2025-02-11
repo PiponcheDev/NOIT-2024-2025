@@ -7,7 +7,8 @@
 
     <link rel="stylesheet" href="../css/subscription.css" />
     <script src="../js/subscription.js" defer></script>
-    <!--google fonts-->
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link
@@ -27,15 +28,20 @@
         <i class="fa-solid fa-bus" id="logo"></i>
         <h1 id="name">БгБус</h1>
       </div>
-      <ul>
+
+      <!-- Add hamburger menu icon -->
+      <i class="fa-solid fa-bars" id="menu-toggle"></i>
+
+      <!-- Dropdown Menu -->
+      <ul id="menu" class="hidden">
         <a href="home-login.php" class="nav-button">Начална Страница</a>
         <a href="#" class="nav-button">Мой карти</a>
         <a href="logout.php" class="nav-button">Изход</a>
       </ul>
     </nav>
-    <form></form>
+
     <div class="container">
-      <div class="cards">     
+      <div class="cards">
         <div class="card"><p>Пенсионерска</p></div>
         <div class="card"><p>Ученическа</p></div>
         <div class="card"><p>Нормална</p></div>
@@ -43,11 +49,9 @@
       <div class="info">
         <h1 id="card-info">Моля, изберете карта.</h1>
         <form action="subscription.php" method="post">
-          <input type="submit" id="buy" value="Buy card" />
+          <input type="submit" id="buy" value="Купете карта" />
         </form>
       </div>
     </div>
   </body>
 </html>
-
-

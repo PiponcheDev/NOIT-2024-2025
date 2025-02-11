@@ -3,6 +3,8 @@ const info = document.getElementById("card-info");
 const btn = document.getElementById("buy");
 const form = document.querySelector("form[action='subscription.php']");
 
+
+
 const cardDescriptions = [
   `Пенсионерска карта:
     • Намаление на цената за пътуване
@@ -33,10 +35,12 @@ function isCardSelected() {
 function updateUI() {
   if (isCardSelected()) {
     btn.style.display = 'block';
-    info.style.justifyContent = 'flex-start';
+    info.textContent = '';  // Remove existing text
+    info.appendChild(btn);  // Ensure only the button is shown
+    info.style.justifyContent = 'center';  // Centers the button in the middle
   } else {
     btn.style.display = 'none';
-    info.textContent = 'Моля, изберете карта.';
+    info.textContent = 'Моля, изберете карта.'; // Add message if no card is selected
     info.style.justifyContent = 'center';
   }
 }

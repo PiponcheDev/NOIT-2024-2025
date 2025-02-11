@@ -147,3 +147,44 @@ section {
   -webkit-box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
 }
+
+
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem 0;
+  }
+
+  nav > div {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  nav > ul {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.2em;
+    margin: 0;
+  }
+
+  .nav-button {
+    padding: 10px;
+    text-decoration: underline var(--primary-color) 2px;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--secondary-color);
+    border-radius: 25px;
+    color: var(--primary-color);
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .nav-button:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+}

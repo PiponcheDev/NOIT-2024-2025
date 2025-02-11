@@ -1,0 +1,32 @@
+:root {
+  --primary-color: #0d1b1e;
+  --secondary-color: #e78207;
+  --text-color: #f1f0cc;
+}
+
+body{
+  background-color: #0d1b1e;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+#container{
+  margin-top: 5rem;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  h1{
+    color: var(--text-color);
+    font-family: Nunito;
+
+  }
+}
+
+#paypal-button-container{
+  width: 12em;
+  height: 20em;
+}
