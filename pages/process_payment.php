@@ -92,7 +92,7 @@ if ($orderDetails['status'] == 'COMPLETED') {
         }
 
         $pdo->commit();
-        $_SESSION['has_card'] = true;
+        $_SESSION['has_card'] = true; // Ensure this is set
         echo json_encode(['success' => true, 'message' => 'Payment and card processing successful.']);
     } catch (PDOException $e) {
         $pdo->rollBack();

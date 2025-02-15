@@ -32,7 +32,7 @@
         <h1 id="name">Бгбус</h1>
       </div>
       <ul>
-        <a href="#" class="nav-button">Мой карти</a>
+        <a href="card_display.php" class="nav-button">Мой карти</a>
         <a href="logout.php"><div style="float:right"><button class="nav-button">Изход от профил</button></div></a>
       </ul>
     </nav>

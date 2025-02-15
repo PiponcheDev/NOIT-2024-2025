@@ -1,0 +1,103 @@
+:root {
+  --primary-color: #0d1b1e;
+  --secondary-color: #e78207;
+  --text-color: #f1f0cc;
+}
+
+body {
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+h2 {
+  color: var(--text-color);
+  font-family: Nunito;
+  text-align: center;
+  margin: 10px;
+}
+
+.container {
+  background-color: var(--secondary-color);
+  border-radius: 25px;
+  max-width: 260px;
+  max-height: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.cardType {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.qr_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 350px; /* Max size for the QR code container */
+  margin-top: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.qr_container img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+    max-height: none;
+    padding: 15px;
+  }
+
+  .cardType {
+    font-size: 1.5rem;
+  }
+
+  .qr_container {
+    margin-top: 20px;
+  }
+
+  .qr_container img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 100%;
+    max-height: 560px;
+    padding: 10px;
+  }
+
+  .cardType {
+    font-size: 1.2rem;
+  }
+
+  .qr_container {
+    margin-top: 15px;
+  }
+
+  .qr_container img {
+    width: 100%;
+  }
+}

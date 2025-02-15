@@ -1,1 +1,0 @@
-[09-Feb-2025 10:17:44 Europe/Berlin] PHP Fatal error:  Cannot redeclare loadEnv() (previously declared in D:\XAMPP\htdocs\NOIT\NOIT-2024-2025\pages\process_payment.php:9) in D:\XAMPP\htdocs\NOIT\NOIT-2024-2025\pages\config.php on line 6
