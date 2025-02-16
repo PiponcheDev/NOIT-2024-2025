@@ -17,14 +17,14 @@
     </div>
     
     <!-- PayPal JS SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=CLIENT_ID&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AWDn25W9UaIiWxg6Pmmz1a1IPP5azedEoy6PdFCGgW3g_4LQkrrrfqy8dYYswAnZ-0imaJzOMVkiggW6&currency=USD"></script>
 
     <script>
         paypal.Buttons({
             createOrder: function(data, actions) {
                 return actions.order.create({
                     purchase_units: [{
-                        amount: { value: '0.01' }  // Update to a real amount, even if it's a test amount
+                        amount: { value: '2.00' }  // Update to a real amount, even if it's a test amount
                     }]
                 });
             },

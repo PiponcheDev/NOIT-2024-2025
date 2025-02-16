@@ -1,9 +1,10 @@
 <?php
+session_start();
+date_default_timezone_set('UTC');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/php_errors.log');
-session_start();
 include 'config.php';
 
 $clientId = loadEnv(__DIR__ . '/config.env')['PAYPAL_CLIENT'] ?? '';
@@ -77,14 +78,15 @@ if ($orderDetails['status'] == 'COMPLETED') {
         $stmt->bindValue(1, $user_id, PDO::PARAM_INT);
         $stmt->execute();
 
+        $pdo->exec("SET time_zone = '+00:00'");
         if ($stmt->rowCount() > 0) {
-            $updateQuery = "UPDATE card SET cardType = ? WHERE user_id = ?";
+            $updateQuery = "UPDATE card SET cardType = ?, purchaseDate = CURRENT_TIMESTAMP WHERE user_id = ?";
             $updateStmt = $pdo->prepare($updateQuery);
             $updateStmt->bindValue(1, $cardTypeLetter, PDO::PARAM_STR);
             $updateStmt->bindValue(2, $user_id, PDO::PARAM_INT);
             $updateStmt->execute();
         } else {
-            $insertQuery = "INSERT INTO card (user_id, cardType) VALUES (?, ?)";
+            $insertQuery = "INSERT INTO card (user_id, cardType, purchaseDate) VALUES (?, ?, CURRENT_TIMESTAMP)";
             $insertStmt = $pdo->prepare($insertQuery);
             $insertStmt->bindValue(1, $user_id, PDO::PARAM_INT);
             $insertStmt->bindValue(2, $cardTypeLetter, PDO::PARAM_STR);

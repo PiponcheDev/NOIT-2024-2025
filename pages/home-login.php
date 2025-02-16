@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php
+session_start();
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/php_errors.log');
+
+// error_log("Session Data on home-login.php: " . print_r($_SESSION, true));
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="bg">

@@ -2,33 +2,35 @@
 session_start();
 require 'config.php';
 
+// Enable logging manually
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/php_errors.log');
+
 if (isset($_POST["login"])) {
     $email = $_POST["user"];
     $pass = $_POST["password"];
 
-    // Retrieve the user from the database
     $query = $pdo->prepare("SELECT * FROM user WHERE email = ?");
     $query->execute([$email]);
-    $row = $query->fetch(PDO::FETCH_ASSOC); // Use fetch() instead of fetchAll()
+    $row = $query->fetch(PDO::FETCH_ASSOC);
 
     if ($row) {
-        $hashed_password = $row['password']; // Get the hashed password from the database
-
-        // Verify the password
-        if (password_verify($pass, $hashed_password)) {
-            // Set session variables
+        if (password_verify($pass, $row['password'])) {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
 
-            // Redirect to the home page
+            // Log session data
+            error_log("Session Data After Login: " . print_r($_SESSION, true));
+
             header('Location: home-login.php');
             exit();
         } else {
-            echo "<script>alert('Invalid password or email'); window.location.href = 'login.php';</script>";
+            error_log("Login Failed: Incorrect password");
+            echo "<script>alert('Invalid password or email');</script>";
         }
     } else {
-        echo "<script>alert('Invalid password or email'); window.location.href = 'login.php';</script>";
+        error_log("Login Failed: User not found");
+        echo "<script>alert('Invalid password or email');</script>";
     }
 }
 ?>
-
