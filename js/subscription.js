@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("JavaScript loaded"); // Debugging line
-
   const cards = document.querySelectorAll(".card");
   const info = document.getElementById("card-info");
   const btn = document.getElementById("buy");
@@ -58,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
       card.style.border = "double 5px #e78207";
       card.classList.add("selected");
 
-      console.log("Card selected:", card); // Debugging line
       info.textContent = cardDescriptions[index] || 'Описание не е налично.';
       updateUI();
     });
@@ -74,12 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (event) => {
     if (!isCardSelected()) {
       event.preventDefault();
-      console.log("No card selected, form submission prevented."); // Debugging line
       alert("Please select a card before proceeding.");
     } else {
       const selectedCard = document.querySelector(".card.selected");
       const cardType = selectedCard.querySelector("p").textContent.trim();
-      console.log("Card type selected:", cardType); // Debugging line
 
       const cardInput = document.createElement("input");
       cardInput.type = "hidden";

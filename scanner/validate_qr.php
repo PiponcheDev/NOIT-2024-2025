@@ -1,6 +1,5 @@
 <?php
-// Custom encryption key (same as in generate_qr.php)
-$encryption_key = hash('sha256', "MySecretKey123!", true);
+$encryption_key = hash('sha256', "NOIT", true);
 
 // Decrypt function
 function decryptData($encrypted, $key) {

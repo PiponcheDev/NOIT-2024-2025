@@ -65,7 +65,7 @@ if ($_SESSION['has_card'] == true) {
 
     if ($result) {
         $cardToken = $result['cardToken'];
-        $encryption_key = hash('sha256', "YourSecureKeyHere", true);
+        $encryption_key = hash('sha256', "NOIT", true);
 
         function encryptData($data, $key) {
             $iv = openssl_random_pseudo_bytes(16);

@@ -81,6 +81,7 @@ if ($orderDetails['status'] == 'COMPLETED') {
         $stmt->execute();
 
         $pdo->exec("SET time_zone = '+00:00'");
+        
         if ($stmt->rowCount() > 0) {
             $updateQuery = "UPDATE card SET cardType = ?, purchaseDate = CURRENT_TIMESTAMP WHERE user_id = ?";
             $updateStmt = $pdo->prepare($updateQuery);

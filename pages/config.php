@@ -1,5 +1,4 @@
 <?php
-// Check if PDO MySQL driver is available
 if (!in_array('mysql', PDO::getAvailableDrivers())) {
     die("PDO MySQL driver is not available. Please enable it in php.ini.");
 }

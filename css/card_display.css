@@ -44,7 +44,7 @@ h2 {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 350px; /* Max size for the QR code container */
+  max-width: 350px;
   margin-top: 30px;
   padding: 0;
   margin: 0;
@@ -61,7 +61,7 @@ h2 {
 }
 
 
-/* Media Queries */
+
 @media (max-width: 768px) {
   .container {
     max-width: 90%;

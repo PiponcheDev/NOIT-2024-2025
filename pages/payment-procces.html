@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/payment.css">
-    <title>Bg Buss</title>
-    <!-- Google Fonts -->
+    <title>БгБус</title>
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
@@ -16,15 +15,14 @@
         <div id="paypal-button-container"></div>
     </div>
     
-    <!-- PayPal JS SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AWDn25W9UaIiWxg6Pmmz1a1IPP5azedEoy6PdFCGgW3g_4LQkrrrfqy8dYYswAnZ-0imaJzOMVkiggW6&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=###########&currency=USD"></script>
 
     <script>
         paypal.Buttons({
             createOrder: function(data, actions) {
                 return actions.order.create({
                     purchase_units: [{
-                        amount: { value: '2.00' }  // Update to a real amount, even if it's a test amount
+                        amount: { value: '2.00' }
                     }]
                 });
             },

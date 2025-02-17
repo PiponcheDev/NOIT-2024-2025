@@ -19,7 +19,6 @@ if (isset($_POST["register"])) {
         echo "<script>alert('Името или пощата са заети'); window.location.href = 'register.php';</script>";
     } else {
         if ($pass == $passcon) {
-            // Insert new user into the database
             $ins = $pdo->prepare("INSERT INTO user (email, username, password) VALUES (?, ?, ?)");
             $ins->execute([$email, $username, $hash]);
 

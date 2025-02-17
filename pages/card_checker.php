@@ -14,6 +14,7 @@ $card = $hascard->fetch(PDO::FETCH_ASSOC);
 
 if ($card && !empty($card['purchaseDate'])) {
     echo '<script>
+    
         alert("Вие вече имате карта");
         window.location.href = "home-login.php";
     </script>';

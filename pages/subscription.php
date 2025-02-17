@@ -15,9 +15,5 @@ if (isset($_POST['card_type'])) {
             header("Location: payment-procces.html");
             exit();
         }
-    } else {
-        echo "User not logged in.";
     }
-} else {
-    echo "Please select a card to buy.";
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Scanner</title>
+    <title>БгБус</title>
     <script src="https://unpkg.com/html5-qrcode"></script> <!-- QR Code Scanner Library -->
     <style>
         body {
@@ -37,7 +37,6 @@
         function onScanSuccess(decodedText, decodedResult) {
             document.getElementById('result').innerText = "Scanned: " + decodedText;
 
-            // Send scanned data to PHP for validation
             fetch('validate_qr.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -53,7 +52,7 @@
             console.warn("QR Scan Error:", errorMessage);
         }
 
-        // Start the scanner
+
         let html5QrCode = new Html5Qrcode("reader");
         html5QrCode.start(
             { facingMode: "environment" }, // Use back camera by default

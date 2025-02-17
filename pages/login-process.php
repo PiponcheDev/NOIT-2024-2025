@@ -24,4 +24,3 @@ if (isset($_POST["login"])) {
         echo "<script>alert('Invalid password or email');</script>";
     }
 }
-?>
