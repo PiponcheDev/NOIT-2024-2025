@@ -10,6 +10,8 @@ include 'config.php';
 $clientId = loadEnv(__DIR__ . '/config.env')['PAYPAL_CLIENT'] ?? '';
 $secret = loadEnv(__DIR__ . '/config.env')['PAYPAL_SECRET'] ?? '';
 
+
+
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['selected_card_type'])) {
     die(json_encode(['success' => false, 'error' => 'Session data missing.']));
 }
@@ -94,7 +96,7 @@ if ($orderDetails['status'] == 'COMPLETED') {
         }
 
         $pdo->commit();
-        $_SESSION['has_card'] = true; // Ensure this is set
+        $_SESSION['has_card'] = true;
         echo json_encode(['success' => true, 'message' => 'Payment and card processing successful.']);
     } catch (PDOException $e) {
         $pdo->rollBack();
@@ -104,3 +106,4 @@ if ($orderDetails['status'] == 'COMPLETED') {
 } else {
     die(json_encode(['success' => false, 'error' => 'Payment not completed.']));
 }
+?>

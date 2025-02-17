@@ -14,7 +14,6 @@ function loadEnv($filePath): array {
 function getDatabaseConnection(): PDO {
     $env = loadEnv(__DIR__ . '/config.env');
 
-    // Use null coalescing operator to set default values if env variables are not present
     $dsn = sprintf(
         "mysql:host=%s;port=%s;dbname=%s;charset=%s",
         $env['DB_HOST'] ?? 'localhost',

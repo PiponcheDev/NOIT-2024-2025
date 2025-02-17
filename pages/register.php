@@ -26,20 +26,19 @@ if (isset($_POST["register"])) {
             // Retrieve the newly inserted user's ID
             $check = $pdo->prepare("SELECT * FROM user WHERE email = ?");
             $check->execute([$email]);
-            $row = $check->fetch(PDO::FETCH_ASSOC); // Use fetch() instead of fetchAll()
+            $row = $check->fetch(PDO::FETCH_ASSOC);
 
-            $id = $row['id']; // Access the 'id' column correctly
-            $name = $row['username']; // Access the 'username' column correctly
+            $id = $row['id'];
+            $name = $row['username'];
 
             // Generate a token for the card
-            function token() {
+            function generateToken() {
                 $str = "1234567890qwertyuiopasdfghjkl;zxcvbnm,./?[{]}!£$%^&*()_-=+#";
                 $rnd = str_shuffle($str);
-                $token = md5($rnd);
-                return $token;
+                return md5($rnd);
             }
 
-            $token = token();
+            $token = generateToken();
 
             // Insert the card into the database
             $card = $pdo->prepare("INSERT INTO card (user_id, cardToken) VALUES (?, ?)");
@@ -48,7 +47,7 @@ if (isset($_POST["register"])) {
             // Set session variables
             $_SESSION['user_id'] = $id;
             $_SESSION['username'] = $name;
-            $_SESSION['has_card'] = true; // Ensure this is set
+            $_SESSION['has_card'] = true;
 
             // Redirect to the home page
             header('Location: home-login.php');
@@ -63,17 +62,12 @@ if (isset($_POST["register"])) {
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-    <!--metadata-->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--tab view-->
     <title>БгБус</title>
     <link rel="icon" href="../media/bus-solid.svg" />
-    <!--css file-->
     <link rel="stylesheet" href="../css/login-register.css" />
-    <!--fontawesome icons imbed-->
     <script src="https://kit.fontawesome.com/b56d58b9c9.js" crossorigin="anonymous" defer></script>
-    <!--google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
