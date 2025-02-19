@@ -3,16 +3,19 @@
   --secondary-color: #e78207;
   --text-color: #eeedc6;
 }
+
 * {
   color: var(--text-color);
   font-family: Nunito;
   margin: 0;
   box-sizing: border-box;
 }
+
 body {
   background: var(--primary-color);
   align-items: center;
 }
+
 nav {
   display: flex;
   flex-direction: row;
@@ -21,6 +24,7 @@ nav {
   background: var(--secondary-color);
   height: 10vh;
 }
+
 nav > div {
   display: flex;
   flex-direction: row;
@@ -30,12 +34,15 @@ nav > div {
   height: 9vh;
   margin-left: 2.5rem;
 }
+
 #logo {
   font-size: 3rem;
 }
+
 #name {
   font-size: 1.8em;
 }
+
 nav > ul {
   display: flex;
   flex-direction: row;
@@ -45,13 +52,14 @@ nav > ul {
   height: 9vh;
   margin-right: 2.5rem;
   font-size: 1.5em;
+  list-style: none;
 }
 
 .nav-button {
   all: unset;
   text-decoration: none;
   position: relative;
-  transition: 0.3 ease-in-out;
+  transition: 0.3s ease-in-out;
   font-weight: 600;
   background: none;
   border: none;
@@ -62,6 +70,7 @@ nav > ul {
   cursor: pointer;
   outline: none;
 }
+
 .nav-button::after {
   content: "";
   border-bottom: 2px solid #e8f1f2;
@@ -120,7 +129,6 @@ section {
   gap: 4rem;
 }
 
-
 .info .buy {
   transition: ease-in-out 0.3s;
   font-weight: 600;
@@ -132,22 +140,23 @@ section {
   border: 2px solid #090e0f;
   color: var(--secondary-color);
   background-color: var(--primary-color);
-}
-
-.info p {
-  padding: 10px;
-  font-size: 17px;
-}
-
-.info > .buy:hover {
-  color: var(--text-color);
   cursor: pointer;
+  display: inline-block; /* Ensure it behaves like a button */
+  text-align: center; /* Center text inside the button */
+}
+
+.info .buy:hover {
+  color: var(--text-color);
   background-color: #142225;
   box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
 }
 
+.info p {
+  padding: 10px;
+  font-size: 17px;
+}
 
 @media (max-width: 768px) {
   nav {
@@ -171,9 +180,13 @@ section {
     margin: 0;
   }
 
+  nav ul li {
+    list-style: none;
+  }
+
   .nav-button {
     padding: 10px;
-    text-decoration: underline var(--primary-color) 2px;
+    text-decoration: none;
     padding: 0.8rem 1.5rem;
     background-color: var(--secondary-color);
     border-radius: 25px;

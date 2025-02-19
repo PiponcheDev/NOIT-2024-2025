@@ -14,8 +14,7 @@ session_start();
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
-
-  </head>
+</head>
 <body>
     <nav>
         <div>
@@ -23,8 +22,14 @@ session_start();
             <h1 id="name">БгБус</h1>
         </div>
         <ul>
-            <a href="card_display.php" class="nav-button">Мой карти</a>
-            <a href="logout.php"><div style="float:right"><button class="nav-button">Изход от профил</button></div></a>
+            <li>
+                <form method="GET" action="card_checker.php">
+                    <input type="submit" name="card" value="Мои карти" class="nav-button"/>
+                </form>
+            </li>
+            <li>
+                <a href="logout.php"><button class="nav-button">Изход от профил</button></a>
+            </li>
         </ul>
     </nav>
     <section>
@@ -37,7 +42,9 @@ session_start();
                     намалявайки емисиите и задръстванията. Удобно, икономично и зелено –
                     автобусите са най-добрият избор за чисто бъдеще!
                 </p>
-                <a class="buy" href="card_checker.php">Купете карта</a>
+                <form method="GET" action="card_checker.php">
+                    <input type="submit" name="buy" value="Закупи карта" class="buy"/>
+                </form>
             </div>
         </div>
     </section>

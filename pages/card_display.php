@@ -52,6 +52,9 @@ if ($card) {
         header("Location: home-login.php");
         exit();
     }
+
+    // Calculate the expiration date
+    $expirationDate = $purchaseDate->add(new DateInterval('P4M'));
 } else {
     header("Location: home-login.php");
     exit();
@@ -68,7 +71,7 @@ if ($_SESSION['has_card'] == true) {
         $encryption_key = hash('sha256', "NOIT", true);
 
         function encryptData($data, $key) {
-            $iv = openssl_random_pseudo_bytes(16);
+            $iv = openssl_random_pseudo_bytes(16); // 16-byte IV
             $encrypted = openssl_encrypt($data, 'AES-256-CBC', $key, 0, $iv);
             return base64_encode($iv . $encrypted);
         }
@@ -130,6 +133,7 @@ if ($_SESSION['has_card'] == true) {
           <img src="<?php echo $qrCodeImage; ?>" alt="QR Code">
       <?php endif; ?>
     </div>
+    <h4> Картата е валидна до: </br> <?php echo $expirationDate->format('Y-m-d'); ?></h4>
   </div>
 </body>
 </html>

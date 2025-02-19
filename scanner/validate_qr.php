@@ -14,7 +14,7 @@ $encrypted_token = $_POST['token'] ?? '';
 
 $decrypted_token = decryptData($encrypted_token, $encryption_key);
 
-if (strpos($decrypted_token, "✅ Valid card!") === 0) {
+if (strpos($decrypted_token, "Valid card!") === 0) {
     echo "✅ Valid card detected!";
 } else {
     echo "❌ Invalid QR code!";
