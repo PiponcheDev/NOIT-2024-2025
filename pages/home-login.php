@@ -24,7 +24,7 @@ session_start();
         <ul>
             <li>
                 <form method="GET" action="card_checker.php">
-                    <input type="submit" name="card" value="Мои карти" class="nav-button"/>
+                    <button class="nav-button"><input type="submit" name="card" value="Мои карти" /></button>
                 </form>
             </li>
             <li>
@@ -36,7 +36,7 @@ session_start();
         <div class="container">
             <div class="deco"></div>
             <div class="info">
-                <h2>Най-екологичния начин да патувате</h2>
+                <h2>Най-екологичния начин да пътувате</h2>
                 <p>
                     Пътувайте екологично с автобус! Един автобус заменя десетки коли,
                     намалявайки емисиите и задръстванията. Удобно, икономично и зелено –
