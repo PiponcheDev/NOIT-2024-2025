@@ -12,6 +12,7 @@
 body {
   background: var(--primary-color);
   align-items: center;
+  
 }
 nav {
   display: flex;
@@ -29,6 +30,9 @@ nav > div {
   width: 10vw;
   height: 9vh;
   margin-left: 2.5rem;
+}
+#mobile-log-in {
+  display: none;
 }
 #logo {
   font-size: 3rem;
@@ -152,39 +156,96 @@ section {
 
 @media (max-width: 768px) {
   nav {
-    flex-direction: column;
-    height: auto;
-    padding: 1rem 0;
+    justify-content:space-around;
+    height: 15vh;
+
   }
 
   nav > div {
     width: 100%;
-    justify-content: center;
-    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+
+  }
+
+  #mobile-log-in{
+    display: block;
+    height: auto;
   }
 
   nav > ul {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 80vw;
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "deco"
+      "info";
+  }
+
+  .deco {
+    border-radius: 35px 35px 0 0;
+    height: 40vh;
+  }
+
+  .info {
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .info p {
+    padding: 5px;
+    font-size: 15px;
+  }
+  nav > ul {
+    width:50vw;
     gap: 1rem;
     font-size: 1.2em;
     margin: 0;
   }
+}
 
-  .nav-button {
-    padding: 10px;
-    text-decoration: underline var(--primary-color) 2px;
-    padding: 0.8rem 1.5rem;
-    background-color: var(--secondary-color);
-    border-radius: 25px;
-    color: var(--primary-color);
-    transition: background-color 0.3s ease-in-out;
+@media (max-width: 480px) {
+  nav > div {
+    align-items: center;
   }
 
-  .nav-button:hover {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  nav > ul {
+    font-size: 1em;
+  }
+
+  .container {
+    width: 95vw;
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "deco"
+      "info";
+  }
+
+  .deco {
+    border-radius: 0;
+  }
+
+  .info {
+    padding: 0.5rem;
+  }
+
+  .info .buy {
+    font-size: 16px;
+    padding: 1rem;
+  }
+
+  .info p {
+    font-size: 15px;
   }
 }
