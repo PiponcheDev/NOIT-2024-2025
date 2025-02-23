@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/ticket.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com/" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet"
+  />
+  <title>БгБус</title>
+</head>
+<body>
+  <div class="container" data-price="1">1</div>
+  <div class="container" data-price="4">4</div>
+  <div class="container" data-price="12">12</div>
+  <div class="container" data-price="24">24</div>
+
+  <div class="info">
+    <p id="info-text">Please select a ticket</p>
+    <form action="save_ticket.php" method="post">
+      <input type="hidden" name="ticket_price" id="ticket-price" value="">
+      <input type="submit" id="buy" value="Купете билет" style="display: none;" />
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const containers = document.querySelectorAll(".container");
+      const buyButton = document.getElementById("buy");
+      const infoText = document.getElementById("info-text");
+      const ticketPriceInput = document.getElementById("ticket-price");
+
+      containers.forEach(container => {
+        container.addEventListener("click", () => {
+          containers.forEach(c => {
+            c.style.border = "none";
+            c.classList.remove("selected");
+          });
+
+          container.style.border = "double 2px #FFA500";
+          container.classList.add("selected");
+
+          ticketPriceInput.value = container.getAttribute("data-price");
+          buyButton.style.display = "block";
+          infoText.style.display = "none";
+        });
+
+        container.addEventListener("dblclick", () => {
+          container.style.border = "none";
+          container.classList.remove("selected");
+          ticketPriceInput.value = "";
+
+          if (!document.querySelector(".container.selected")) {
+            buyButton.style.display = "none";
+            infoText.style.display = "block";
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

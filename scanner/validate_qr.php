@@ -16,6 +16,8 @@ $decrypted_token = decryptData($encrypted_token, $encryption_key);
 
 if (strpos($decrypted_token, "Valid card!") === 0) {
     echo "✅ Valid card detected!";
+} elseif (strpos($decrypted_token, "Valid ticket!") === 0) {
+    echo "✅ Valid ticket detected!";
 } else {
     echo "❌ Invalid QR code!";
 }

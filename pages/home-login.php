@@ -23,8 +23,8 @@ session_start();
         </div>
         <ul>
             <li>
-                <form method="GET" action="card_checker.php">
-                    <button class="nav-button"><input type="submit" name="card" value="Мои карти" /></button>
+                <form method="GET" action="view_cards.php">
+                    <input type="submit" name="card" value="Мои карти" class="nav-button"/>
                 </form>
             </li>
             <li>
@@ -42,7 +42,7 @@ session_start();
                     намалявайки емисиите и задръстванията. Удобно, икономично и зелено –
                     автобусите са най-добрият избор за чисто бъдеще!
                 </p>
-                <form method="GET" action="card_checker.php">
+                <form method="GET" action="purchase_choice.php">
                     <input type="submit" name="buy" value="Закупи карта" class="buy"/>
                 </form>
             </div>
