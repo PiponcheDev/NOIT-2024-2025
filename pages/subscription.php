@@ -10,17 +10,10 @@ if (isset($_POST['card_type'])) {
             echo "Please select a valid card type.";
             exit();
         } else {
-            // Store the selected card type in session for use after payment
             $_SESSION['selected_card_type'] = $cardType;
 
-            // Redirect to payment process page
             header("Location: payment-procces.html");
             exit();
         }
-    } else {
-        echo "User not logged in.";
     }
-} else {
-    echo "Please select a card to buy.";
 }
-?>

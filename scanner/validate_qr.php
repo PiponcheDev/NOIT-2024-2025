@@ -1,6 +1,5 @@
 <?php
-// Custom encryption key (same as in generate_qr.php)
-$encryption_key = hash('sha256', "MySecretKey123!", true);
+$encryption_key = hash('sha256', "NOIT", true);
 
 // Decrypt function
 function decryptData($encrypted, $key) {
@@ -15,8 +14,10 @@ $encrypted_token = $_POST['token'] ?? '';
 
 $decrypted_token = decryptData($encrypted_token, $encryption_key);
 
-if (strpos($decrypted_token, "✅ Valid card!") === 0) {
+if (strpos($decrypted_token, "Valid card!") === 0) {
     echo "✅ Valid card detected!";
+} elseif (strpos($decrypted_token, "Valid ticket!") === 0) {
+    echo "✅ Valid ticket detected!";
 } else {
     echo "❌ Invalid QR code!";
 }

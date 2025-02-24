@@ -1,7 +1,7 @@
 :root {
-  --primary-color: #0d1b1e;
-  --secondary-color: #e78207;
-  --text-color: #f1f0cc;
+  --primary-color: #333333;
+  --secondary-color: #DDA853;
+  --text-color: #FBF5DD;
 }
 
 body {
@@ -44,7 +44,7 @@ h2 {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 350px; /* Max size for the QR code container */
+  max-width: 350px;
   margin-top: 30px;
   padding: 0;
   margin: 0;
@@ -61,7 +61,12 @@ h2 {
 }
 
 
-/* Media Queries */
+h4{
+  text-align: center;
+  font-family: Nunito;
+  color: var(--text-color);
+}
+
 @media (max-width: 768px) {
   .container {
     max-width: 90%;

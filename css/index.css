@@ -1,19 +1,22 @@
 :root {
-  --primary-color: #0d1b1e;
-  --secondary-color: #e78207;
-  --text-color: #eeedc6;
+  --primary-color: #333333;
+  --secondary-color: #DDA853;
+  --text-color: #FBF5DD;
 }
+
 * {
   color: var(--text-color);
   font-family: Nunito;
   margin: 0;
   box-sizing: border-box;
 }
+
 body {
   background: var(--primary-color);
   align-items: center;
   
 }
+
 nav {
   display: flex;
   flex-direction: row;
@@ -22,6 +25,7 @@ nav {
   background: var(--secondary-color);
   height: 10vh;
 }
+
 nav > div {
   display: flex;
   flex-direction: row;
@@ -37,9 +41,11 @@ nav > div {
 #logo {
   font-size: 3rem;
 }
+
 #name {
   font-size: 1.8em;
 }
+
 nav > ul {
   display: flex;
   flex-direction: row;
@@ -49,23 +55,22 @@ nav > ul {
   height: 9vh;
   margin-right: 2.5rem;
   font-size: 1.5em;
+  list-style: none;
 }
 
+/* Keep My Card and Logout Button Animations */
 .nav-button {
-  all: unset;
-  text-decoration: none;
-  position: relative;
-  transition: 0.3 ease-in-out;
-  font-weight: 600;
-  background: none;
+  display: inline-block;
+  padding: 0.5rem 1rem;
   border: none;
-  margin: 0;
-  padding: 0;
-  font: inherit;
-  color: inherit;
+  background: none;
   cursor: pointer;
-  outline: none;
+  font-size: 25px;
+  font-weight: 600;
+  position: relative;
+  transition: 0.3s ease-in-out;
 }
+
 .nav-button::after {
   content: "";
   border-bottom: 2px solid #e8f1f2;
@@ -81,6 +86,38 @@ nav > ul {
   width: 120%;
 }
 
+/* Restore the Buy Button Hover Effect */
+.info .buy {
+  transition: ease-in-out 0.3s;
+  font-weight: 600;
+  font-size: 25px;
+  text-decoration: none;
+  padding: 1.2em 1.4em;
+  border-radius: 35px;
+  margin-top: 20px;
+  border: 2px solid #090e0f;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+
+.info .buy:hover {
+  color: var(--text-color);
+  background-color: #142225;
+  box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
+}
+
+.nav-button input{
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  font-family: Nunito;
+}
+
 section {
   width: 100%;
   height: 90vh;
@@ -90,9 +127,8 @@ section {
 }
 
 .container {
-  border-radius: 35px;
-  height: 80vh;
-  width: 60vw;
+  height: 100%;
+  width: 80vw;
   background: #111111;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -106,8 +142,6 @@ section {
 }
 
 .deco {
-  filter: grayscale(10);
-  border-radius: 35px 0 0 35px;
   grid-area: deco;
   background-size: cover;
   background-position: center;
@@ -125,34 +159,15 @@ section {
 }
 
 
-.info .buy {
-  transition: ease-in-out 0.3s;
-  font-weight: 600;
-  font-size: 19px;
-  text-decoration: none;
-  padding: 1.2em 1.4em;
-  border-radius: 35px;
-  margin-top: 20px;
-  border: 2px solid #090e0f;
-  color: var(--secondary-color);
-  background-color: var(--primary-color);
-}
-
 .info p {
   padding: 10px;
-  font-size: 17px;
+  font-size: 35px;
 }
 
-.info > .buy:hover {
-  color: var(--text-color);
-  cursor: pointer;
-  background-color: #142225;
-  box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 13px 13px 60px 4px rgba(0, 0, 0, 0.75);
+.info h2{
+  font-size: 38px;
+  padding: 10px;
 }
-
-
 
 @media (max-width: 768px) {
   nav {
@@ -211,33 +226,15 @@ section {
     font-size: 1.2em;
     margin: 0;
   }
-}
 
-@media (max-width: 480px) {
-  nav > div {
-    align-items: center;
-  }
-
-  nav > ul {
-    font-size: 1em;
-  }
-
-  .container {
-    width: 95vw;
-    height: auto;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-      "deco"
-      "info";
-  }
-
-  .deco {
-    border-radius: 0;
-  }
-
-  .info {
-    padding: 0.5rem;
+  .nav-button {
+    padding: 10px;
+    text-decoration: underline var(--primary-color) 2px;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--secondary-color);
+    border-radius: 25px;
+    color: var(--primary-color);
+    transition: background-color 0.3s ease-in-out;
   }
 
   .info .buy {

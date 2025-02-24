@@ -1,0 +1,23 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0d1b1e;
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+}
+
+.logout-animation {
+  text-align: center;
+}
+
+
+.logout-animation p {
+  font-size: 1.5em;
+}
+
+p{
+  color: #eeedcf;
+
+}

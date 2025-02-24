@@ -1,6 +1,11 @@
 <?php
+session_start();
+date_default_timezone_set('UTC');
 include 'config.php';
+$pdo->exec("SET time_zone = '+00:00'");
 require '../vendor/autoload.php'; // Include Composer's autoloader for Endroid\QrCode
+
+ini_set('log_errors', 1);
 
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Encoding\Encoding;
@@ -8,15 +13,54 @@ use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\RoundBlockSizeMode;
 use Endroid\QrCode\Writer\PngWriter;
 
-session_start();
-
 // Check if session variables are set
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['has_card'])) {
-    die("Session variables not set.");
+    header("Location: home-login.php");
+    exit();
+}
+
+// Validity duration in seconds (4 months)
+$validityDuration = 4 * 30 * 24 * 60 * 60;
+$currentTime = new DateTime('now', new DateTimeZone('UTC'));
+
+// Fetch the user's card from the database
+$query = $pdo->prepare("SELECT * FROM card WHERE user_id = ?");
+$query->bindParam(1, $_SESSION['user_id'], PDO::PARAM_INT);
+$query->execute();
+$card = $query->fetch(PDO::FETCH_ASSOC);
+
+if ($card) {
+    $purchaseDate = DateTime::createFromFormat('Y-m-d H:i:s', $card['purchaseDate'], new DateTimeZone('UTC'));
+    if (!$purchaseDate) {
+        header('Location: home-login.php');
+        exit();
+    }
+    
+    $purchaseDateTimestamp = $purchaseDate->getTimestamp();
+    $timeDifference = $currentTime->getTimestamp() - $purchaseDateTimestamp;
+
+    if ($timeDifference < 0) {
+        $timeDifference = 0;
+    }
+
+    if ($timeDifference > $validityDuration) {
+        $invalidateQuery = "UPDATE card SET cardType = NULL, purchaseDate = NULL WHERE user_id = ?";
+        $invalidateStmt = $pdo->prepare($invalidateQuery);
+        $invalidateStmt->bindValue(1, $_SESSION['user_id'], PDO::PARAM_INT);
+        $invalidateStmt->execute();
+        $_SESSION['has_card'] = false;
+        header("Location: home-login.php");
+        exit();
+    }
+
+    // Calculate the expiration date
+    $expirationDate = $purchaseDate->add(new DateInterval('P4M'));
+} else {
+    header("Location: home-login.php");
+    exit();
 }
 
 if ($_SESSION['has_card'] == true) {
-    // Fetch cardToken from the database
     $query = $pdo->prepare("SELECT cardToken FROM card WHERE user_id = ?");
     $query->bindParam(1, $_SESSION['user_id'], PDO::PARAM_INT);
     $query->execute();
@@ -24,27 +68,22 @@ if ($_SESSION['has_card'] == true) {
 
     if ($result) {
         $cardToken = $result['cardToken'];
+        $encryption_key = hash('sha256', "NOIT", true);
 
-        // Custom encryption key (fixed)
-        $encryption_key = hash('sha256', "MySecretKey123!", true); // 256-bit key
-
-        // Encrypt function
         function encryptData($data, $key) {
             $iv = openssl_random_pseudo_bytes(16); // 16-byte IV
             $encrypted = openssl_encrypt($data, 'AES-256-CBC', $key, 0, $iv);
             return base64_encode($iv . $encrypted);
         }
 
-        // Add validation message and encrypt
-        $dataToEncrypt = "✅ Valid card!" . $cardToken;
+        $dataToEncrypt = "Valid card!" . $cardToken;
         $encryptedToken = encryptData($dataToEncrypt, $encryption_key);
 
-        // Create a QR code using the Builder
         $builder = new Builder(
             writer: new PngWriter(),
             writerOptions: [],
             validateResult: false,
-            data: $encryptedToken, // Use the encrypted cardToken
+            data: $encryptedToken,
             encoding: new Encoding('UTF-8'),
             errorCorrectionLevel: ErrorCorrectionLevel::High,
             margin: 0,
@@ -53,10 +92,9 @@ if ($_SESSION['has_card'] == true) {
         );
 
         $result = $builder->build();
-        $qrCodeImage = $result->getDataUri(); // Get the QR code as a data URI
+        $qrCodeImage = $result->getDataUri();
     }
 } else {
-    echo "<script>alert('Този профил няма карта')</script>";
     header("Location: home-login.php");
     exit();
 }
@@ -95,6 +133,7 @@ if ($_SESSION['has_card'] == true) {
           <img src="<?php echo $qrCodeImage; ?>" alt="QR Code">
       <?php endif; ?>
     </div>
+    <h4> Картата е валидна до: </br> <?php echo $expirationDate->format('Y-m-d'); ?></h4>
   </div>
 </body>
 </html>

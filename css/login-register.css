@@ -1,7 +1,7 @@
 :root {
-  --primary-color: #0d1b1e;
-  --secondary-color: #e78207;
-  --text-color: #f1f0cc;
+  --primary-color: #333333;
+  --secondary-color: #DDA853;
+  --text-color: #FBF5DD;
 }
 
 * {
@@ -32,6 +32,7 @@ section {
   -webkit-box-shadow: 9px 12px 34px -7px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 9px 12px 34px -7px rgba(0, 0, 0, 0.75);
   box-shadow: 9px 12px 34px -7px rgba(0, 0, 0, 0.75);
+  
 }
 
 #name-logo {
