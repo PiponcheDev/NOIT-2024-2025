@@ -20,6 +20,12 @@ session_start();
         <div>
             <i class="fa-solid fa-bus" id="logo"></i>
             <h1 id="name">БгБус</h1>
+            <div id="mobile-menu">
+                <a href="logout.php" class="nav-button"><img src="../media/log-out.png"></a>
+                <form method="GET" action="view_cards.php">
+                    <input type="submit" name="card" value="" class="nav-button  image-submit"/>
+                </form>
+            </div>
         </div>
         <ul>
             <li>

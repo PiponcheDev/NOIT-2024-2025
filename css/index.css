@@ -38,6 +38,9 @@ nav > div {
 #mobile-log-in {
   display: none;
 }
+#mobile-menu{
+  display: none;
+}
 #logo {
   font-size: 3rem;
 }
@@ -69,6 +72,7 @@ nav > ul {
   font-weight: 600;
   position: relative;
   transition: 0.3s ease-in-out;
+  text-decoration: none;
 }
 
 .nav-button::after {
@@ -117,6 +121,17 @@ nav > ul {
   font-size: 25px;
   font-family: Nunito;
 }
+
+.image-submit {
+  background: url('../media/id-card.png') no-repeat center center;
+  background-size:cover;
+  width: 55px; /* Adjust the width as needed */
+  height: 55px; /* Adjust the height as needed */
+  border: none;
+  cursor: pointer;
+  text-indent: -9999px; /* Hide the text value */
+}
+
 
 section {
   width: 100%;
@@ -171,9 +186,13 @@ section {
 
 @media (max-width: 768px) {
   nav {
-    justify-content:space-around;
+    justify-content: space-around;
     height: 15vh;
+  }
 
+  section {
+    height: 100vh;
+    margin-top: 2rem;
   }
 
   nav > div {
@@ -182,18 +201,23 @@ section {
     justify-content: space-around;
     align-items: center;
     margin: auto;
-
   }
 
-  #mobile-log-in{
+  #mobile-log-in {
     display: block;
-    height: auto;
   }
 
+  #mobile-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
   nav > ul {
     display: none;
   }
 }
+
 
 @media (max-width: 1024px) {
   .container {
@@ -220,8 +244,9 @@ section {
     padding: 5px;
     font-size: 15px;
   }
+
   nav > ul {
-    width:50vw;
+    width: 50vw;
     gap: 1rem;
     font-size: 1.2em;
     margin: 0;
@@ -229,11 +254,10 @@ section {
 
   .nav-button {
     padding: 10px;
-    text-decoration: underline var(--primary-color) 2px;
     padding: 0.8rem 1.5rem;
     background-color: var(--secondary-color);
     border-radius: 25px;
-    color: var(--primary-color);
+    color: var(--text-color);
     transition: background-color 0.3s ease-in-out;
   }
 
