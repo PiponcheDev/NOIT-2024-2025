@@ -18,9 +18,15 @@ if (isset($_POST["login"])) {
             header('Location: home-login.php');
             exit();
         } else {
-            echo "<script>alert('Invalid password or email');</script>";
+            echo "
+            <script>
+                alert('Invalid password or email');
+                www.location.href = 'login.php';
+            </script>";
         }
     } else {
-        echo "<script>alert('Invalid password or email');</script>";
+        echo "<script>alert('Invalid password or email');
+            www.location.href = 'login.php';
+        </script>";
     }
 }
