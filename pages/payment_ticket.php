@@ -58,7 +58,7 @@ $ticketType = $_SESSION['ticket_type'];
                                 console.log('Ticket saved successfully');
                                 window.location.href = "home-login.php";
                             } else {
-                                console.error('Error saving ticket');
+                                console.error('Error saving ticket:', data.error);
                             }
                         })
                         .catch(error => {
