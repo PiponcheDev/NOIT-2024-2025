@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `card` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY,
   `cardToken` varchar(10000) NOT NULL,
   `cardType` char(1) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE `card` (
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY,
   `email` varchar(100) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL
@@ -68,14 +68,12 @@ CREATE TABLE `user` (
 -- Индекси за таблица `card`
 --
 ALTER TABLE `card`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_user_id` (`user_id`);
 
 --
 -- Индекси за таблица `user`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+
 
 --
 -- AUTO_INCREMENT for dumped tables
