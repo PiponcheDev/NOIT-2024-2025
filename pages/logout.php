@@ -5,7 +5,7 @@ if (isset($_SESSION['id'])) {
 }
 
 if (empty($_SESSION['id'])) {
-    header('Refresh: 2; URL=index.html'); // Delay for 2 seconds to allow the animation to play
+    header('Refresh: 2; URL=../index.html'); // Delay for 2 seconds to allow the animation to play
     echo '<!DOCTYPE html>
     <html lang="bg">
     <head>
