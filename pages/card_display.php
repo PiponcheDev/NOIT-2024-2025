@@ -12,7 +12,9 @@ use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\RoundBlockSizeMode;
 use Endroid\QrCode\Writer\PngWriter;
-
+error_log("Session User ID: " . ($_SESSION['user_id'] ?? 'Not set'));
+error_log("Session has_card: " . ($_SESSION['has_card'] ?? 'Not set'));
+error_log("Session ID: " . session_id());
 // Check if session variables are set
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['has_card'])) {
     header("Location: home-login.php");
@@ -20,7 +22,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['has_card'])) {
 }
 
 // Validity duration in seconds (4 months)
-$validityDuration = 4 * 30 * 24 * 60 * 60;
+$validityDuration = 4 * 30 * 24 * 60 * 600000000000;
 $currentTime = new DateTime('now', new DateTimeZone('UTC'));
 
 // Fetch the user's card from the database

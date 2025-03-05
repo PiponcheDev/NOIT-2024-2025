@@ -17,7 +17,7 @@ function getDatabaseConnection(): PDO {
         "mysql:host=%s;port=%s;dbname=%s;charset=%s",
         $env['DB_HOST'] ?? 'localhost',
         $env['DB_PORT'] ?? '3306',
-        $env['DB_NAME'] ?? '',
+        $env['DB_NAME'] ?? 'travelpass',
         $env['DB_CHARSET'] ?? 'utf8mb4'
     );
 

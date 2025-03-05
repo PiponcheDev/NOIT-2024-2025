@@ -183,7 +183,14 @@ section {
   font-size: 38px;
   padding: 10px;
 }
-
+@media (max-width: 1500px){
+  .info p{
+     font-size: 25px;
+  } 
+  .info h2{
+    font-size:28px;
+  }
+}
 @media (max-width: 768px) {
   nav {
     justify-content: space-around;

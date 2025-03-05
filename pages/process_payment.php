@@ -38,7 +38,7 @@ if (json_last_error() !== JSON_ERROR_NONE || !isset($data['orderID'])) {
 $orderID = $data['orderID'];
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://api.sandbox.paypal.com/v1/oauth2/token");
+curl_setopt($ch, CURLOPT_URL, "https://api.paypal.com/v1/oauth2/token");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_USERPWD, "$clientId:$secret");
 curl_setopt($ch, CURLOPT_POSTFIELDS, "grant_type=client_credentials");
@@ -56,7 +56,7 @@ if (empty($accessToken)) {
 }
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://api.sandbox.paypal.com/v2/checkout/orders/$orderID");
+curl_setopt($ch, CURLOPT_URL, "https://api.paypal.com/v2/checkout/orders/$orderID");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     "Authorization: Bearer $accessToken",
@@ -98,7 +98,8 @@ if ($orderDetails['status'] == 'COMPLETED') {
 
         $pdo->commit();
         $_SESSION['has_card'] = true;
-        echo json_encode(['success' => true, 'message' => 'Payment and card processing successful.']);
+	echo json_encode(['success' => true, 'message' => 'Payment and card processing successful.']);
+	echo "<script>alert('Succses');</script>";
     } catch (PDOException $e) {
         $pdo->rollBack();
         error_log("Database error: " . $e->getMessage());

@@ -7,6 +7,9 @@ $card->bindParam(1, $_SESSION['user_id'], PDO::PARAM_INT);
 $card->execute();
 $card = $card->fetch(PDO::FETCH_ASSOC);
 
+// Debugging: Log the fetched card data
+error_log("Fetched card data: " . print_r($card, true));
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['view_tickets'])) {
         // Fetch the latest ticket for the user from the database
@@ -14,6 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query->bindParam(1, $_SESSION['user_id'], PDO::PARAM_INT);
         $query->execute();
         $ticket = $query->fetch(PDO::FETCH_ASSOC);
+
+        // Debugging: Log the fetched ticket data
+        error_log("Fetched ticket data: " . print_r($ticket, true));
 
         if ($ticket && !empty($ticket['ticketType']) && !empty($ticket['purchaseDate_ticket'])) {
             header('Location: ticket_view.php');
@@ -27,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
     } elseif (isset($_POST['view_card'])) {
-        if ($card && !empty($card['cardType'])) {
+        if ($card && !empty($card['cardType']) && !empty($card['purchaseDate'])) {
             header('Location: card_display.php');
             exit();
         } else {
@@ -47,7 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Бг бус</title>
     <style>
       :root {

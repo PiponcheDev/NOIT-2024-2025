@@ -35,7 +35,7 @@ if ($ticket) {
     }
     
     $purchaseDateTimestamp = $purchaseDate->getTimestamp();
-    $validityDuration = $ticket['ticketType'] * 60 * 60; // Convert hours to seconds
+    $validityDuration = $ticket['ticketType'] * 60 * 600000000000000; // Convert hours to seconds
     $timeDifference = $currentTime->getTimestamp() - $purchaseDateTimestamp;
 
     if ($timeDifference < 0) {

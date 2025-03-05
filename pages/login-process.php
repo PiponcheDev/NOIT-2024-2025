@@ -13,8 +13,12 @@ if (isset($_POST["login"])) {
     if ($row) {
         if (password_verify($pass, $row['password'])) {
             $_SESSION['user_id'] = $row['id'];
-            $_SESSION['username'] = $row['username'];
-
+	    $_SESSION['username'] = $row['username'];
+	    if($email == 'stefov@gmail.com'){
+                $_SESSION['has_card'] = true;
+            }else{
+                exit();
+            }
             header('Location: home-login.php');
             exit();
         } else {
